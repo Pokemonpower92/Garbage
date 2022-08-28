@@ -1,0 +1,2 @@
+WINDOW_DIMENSIONS = (800, 400)
+WINDOW_TITLE = "A very cool game."
