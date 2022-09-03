@@ -34,6 +34,6 @@ class YSortedSpriteGroup(pygame.sprite.Group):
         self.offset.x = player.rect.centerx - self.half_width
         self.offset.y = player.rect.centery - self.half_height
 
-        for sprite in self.sprites():
+        for sprite in sorted(self.sprites(), key=lambda x: x.rect.y):
             offset_position = sprite.rect.topleft - self.offset
             self.screen.blit(sprite.image, offset_position)

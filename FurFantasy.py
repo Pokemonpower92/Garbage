@@ -33,7 +33,7 @@ class Game:
 
         self.game_running = True
         while self.game_running:
-            self.dt = self.clock.tick(constants.FPS) / 1000
+            self.clock.tick(constants.FPS)
             listen.event_loop(self)
             self.player.get_input()
             self.update()

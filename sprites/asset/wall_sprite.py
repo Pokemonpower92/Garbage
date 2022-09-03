@@ -1,5 +1,5 @@
 import pygame
-from config import constants
+from config import constants, resource_paths
 
 
 class WallSprite(pygame.sprite.Sprite):
@@ -10,11 +10,10 @@ class WallSprite(pygame.sprite.Sprite):
         self.tilemap = tilemap
 
         self.groups = self.tilemap.all_sprites, self.tilemap.wall_sprites
-        self.image = pygame.Surface((constants.TILE_SIZE, constants.TILE_SIZE))
+        self.image = pygame.image.load(resource_paths.TEST_ROCK)
         self.rect = self.image.get_rect()
 
         pygame.sprite.Sprite.__init__(self, self.groups)
-        self.image.fill(constants.WALL_COLOR)
         self.tilemap.wall_sprites.add(self)
 
         self.rect.x = self.x * constants.TILE_SIZE
