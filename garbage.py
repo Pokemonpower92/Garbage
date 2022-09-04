@@ -3,10 +3,10 @@ from sys import exit
 import os
 
 
-from config import constants, resource_paths
-from sprites.player.player_sprite import PlayerSprite
-from tilemap import tilemap
-from setup import setup_help
+from config import constants, level_data
+from sprites.player_sprite import PlayerSprite
+from level import Level
+from utils import setup
 from events import listen
 
 
@@ -16,13 +16,12 @@ class Game:
 
         pygame.init()
 
-        self.screen = setup_help.setup_window(
+        self.screen = setup.setup_window(
             constants.WINDOW_DIMENSIONS,
             constants.WINDOW_TITLE,
         )
 
         self.clock = pygame.time.Clock()
-        self.level = "a"
 
     def new(self):
         """Initialize everything we need for a new game."""
@@ -48,7 +47,7 @@ class Game:
     def update(self):
         """Update all the objects."""
 
-        for s in self.tilemap.all_sprites:
+        for s in self.level.all_sprites:
             s.update()
 
     def draw_grid(self):
@@ -68,14 +67,15 @@ class Game:
 
         self.screen.fill(constants.BACKGROUND_COLOR)
         self.draw_grid()
-        self.tilemap.all_sprites.custom_draw(self.player)
+        self.level.all_sprites.custom_draw(self.player)
         pygame.display.update()
 
     def load_assets(self):
         """Load the player, walls, enemies, pickups."""
-        self.tilemap = tilemap.Tilemap(self)
-        self.player = PlayerSprite(self.tilemap)
-        self.tilemap.load_wall_map()
+        self.level = Level(self, level_data.LEVEL_0)
+        self.player = PlayerSprite(self.level)
+
+        self.level.load_level()
 
     def show_start_screen(self):
         pass

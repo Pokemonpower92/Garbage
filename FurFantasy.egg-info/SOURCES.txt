@@ -5,7 +5,8 @@ FurFantasy.egg-info/dependency_links.txt
 FurFantasy.egg-info/top_level.txt
 config/__init__.py
 config/constants.py
-config/environment_resource_paths.py
+config/level_data.py
+config/resource_paths.py
 events/__init__.py
 events/listen.py
 setup/__init__.py

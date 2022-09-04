@@ -1,4 +1,3 @@
-from curses import KEY_ENTER
 import pygame
 from config import constants, resource_paths
 

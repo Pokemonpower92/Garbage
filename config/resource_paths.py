@@ -2,9 +2,13 @@ import os
 
 GRAPHICS_PATH = os.path.abspath("resources/graphics")
 
-TEST_PLAYER = GRAPHICS_PATH + "/test/player.png"
-TEST_ROCK = GRAPHICS_PATH + "/test/rock.png"
+# Tilesets
+FLOOR_TILES = os.path.abspath("resources/graphics/floors")
+WALL_TILES = os.path.abspath("resources/graphics/walls")
 
-TILEMAP_PATH = os.path.abspath("resources/tilemaps/")
-TIILEMAP_A = TILEMAP_PATH + "level_a.tm"
-TIILEMAP_B = TILEMAP_PATH + "level_b.tm"
+LEVEL_DATA_PATH = os.path.abspath("resources/levels")
+LEVEL_0_DATA = os.path.abspath("resources/levels/0")
+
+
+TEST_PLAYER = GRAPHICS_PATH + "/test/down_0.png"
+TEST_ROCK = GRAPHICS_PATH + "/test/rock.png"
