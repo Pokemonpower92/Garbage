@@ -14,7 +14,6 @@ class Level:
         self.all_sprites = YSortedSpriteGroup(self.game.screen, level_data)
         self.wall_sprites = pygame.sprite.Group()
         self.route_sprites = pygame.sprite.Group()
-        self.floor_sprites = pygame.sprite.Group()
 
     def load_level(self):
         """Loads the level and creates all the sprites."""

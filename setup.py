@@ -1,7 +1,7 @@
 from distutils.core import setup
 
 setup(
-    name="FurFantasy",
+    name="Garbage",
     version="1.0",
     packages=[
         "config",
