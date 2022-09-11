@@ -28,7 +28,19 @@ class Level:
                         if type == "wall":
                             WallSprite(
                                 self,
-                                self.level_data["wall_path"] + value + ".png",
+                                self.level_data["graphics_paths"]["walls"]
+                                + value
+                                + ".png",
+                                x,
+                                y,
+                            )
+
+                        elif type == "enemy":
+                            WallSprite(
+                                self,
+                                self.level_data["graphics_paths"]["enemies"]["cat"]
+                                + "/down/down_0"
+                                + ".png",
                                 x,
                                 y,
                             )

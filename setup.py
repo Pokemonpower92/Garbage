@@ -6,7 +6,7 @@ setup(
     packages=[
         "config",
         "events",
-        "setup",
+        "utils",
         "sprites",
     ],
 )

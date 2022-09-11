@@ -5,6 +5,7 @@ GRAPHICS_PATH = os.path.abspath("resources/graphics")
 # Tilesets
 FLOOR_TILES = os.path.abspath("resources/graphics/floors")
 WALL_TILES = os.path.abspath("resources/graphics/walls")
+CAT_TILES = os.path.abspath("resources/graphics/enemies/cat")
 
 LEVEL_DATA_PATH = os.path.abspath("resources/levels")
 LEVEL_0_DATA = os.path.abspath("resources/levels/0")
