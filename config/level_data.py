@@ -3,7 +3,7 @@ from utils import data_management
 
 LEVEL_0_IMAGE_PATHS = {
     "walls": resource_paths.WALL_TILES + "/0/",
-    "enemies": {"cat": resource_paths.CAT_TILES},
+    "enemies": {"0": resource_paths.CAT_START},
 }
 
 LEVEL_0 = {

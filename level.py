@@ -1,6 +1,7 @@
 import pygame
 from config import resource_paths, constants
 from sprites.wall_sprite import WallSprite
+from sprites.enemy_sprite import EnemySprite
 from utils import data_management
 
 
@@ -13,6 +14,7 @@ class Level:
         # Create all the sprites for the level.
         self.all_sprites = YSortedSpriteGroup(self.game.screen, level_data)
         self.wall_sprites = pygame.sprite.Group()
+        self.enemy_sprites = pygame.sprite.Group()
         self.route_sprites = pygame.sprite.Group()
 
     def load_level(self):
@@ -36,11 +38,9 @@ class Level:
                             )
 
                         elif type == "enemy":
-                            WallSprite(
+                            EnemySprite(
                                 self,
-                                self.level_data["graphics_paths"]["enemies"]["cat"]
-                                + "/down/down_0"
-                                + ".png",
+                                value,
                                 x,
                                 y,
                             )

@@ -1,15 +1,16 @@
 import pygame
-from config import constants, resource_paths
+from config import constants, resource_paths, level_data
 
 
 class EnemySprite(pygame.sprite.Sprite):
-    def __init__(self, tilemap, type, x: int = 0, y: int = 0):
+    def __init__(self, level, type, x: int = 0, y: int = 0):
         self.x = x
         self.y = y
 
-        self.tilemap = tilemap
+        self.level = level
+        self.type = type
 
-        self.groups = self.tilemap.all_sprites, self.tilemap.wall_sprites
+        self.groups = self.level.all_sprites, self.level.enemy_sprites
         self.image = self.load_image()
         self.rect = self.image.get_rect()
 
@@ -18,5 +19,6 @@ class EnemySprite(pygame.sprite.Sprite):
         self.rect.x = self.x
         self.rect.y = self.y
 
-    def load_image():
-        return pygame.image.load()
+    def load_image(self):
+        image_path = self.level.level_data["graphics_paths"]["enemies"][self.type]
+        return pygame.image.load(image_path)
