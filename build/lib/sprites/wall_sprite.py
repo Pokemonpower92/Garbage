@@ -1,5 +1,5 @@
 import pygame
-from config import constants, resource_paths
+from config import game_constants, resource_paths
 
 
 class WallSprite(pygame.sprite.Sprite):

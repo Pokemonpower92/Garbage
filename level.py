@@ -1,7 +1,7 @@
 import pygame
-from config import resource_paths, constants
-from sprites.wall_sprite import WallSprite
-from sprites.enemy_sprite import EnemySprite
+from config import game_constants, resource_paths
+from sprites.environment_sprites.wall_sprite import WallSprite
+from sprites.enemy_sprites.enemy_sprite import EnemySprite
 from utils import data_management
 
 
@@ -14,6 +14,8 @@ class Level:
         # Create all the sprites for the level.
         self.all_sprites = YSortedSpriteGroup(self.game.screen, level_data)
         self.wall_sprites = pygame.sprite.Group()
+        self.attack_sprites = pygame.sprite.Group()
+        self.entity_sprites = pygame.sprite.Group()
         self.enemy_sprites = pygame.sprite.Group()
         self.route_sprites = pygame.sprite.Group()
 
@@ -23,8 +25,8 @@ class Level:
         for type, layout in self.level_data["tiles"].items():
             for row_index, row in enumerate(layout):
                 for column_index, value in enumerate(row):
-                    x = column_index * constants.TILE_SIZE
-                    y = row_index * constants.TILE_SIZE
+                    x = column_index * game_constants.TILE_SIZE
+                    y = row_index * game_constants.TILE_SIZE
 
                     if value != "-1":
                         if type == "wall":
@@ -52,8 +54,8 @@ class YSortedSpriteGroup(pygame.sprite.Group):
         super().__init__()
         self.screen = screen
 
-        self.half_width = constants.WINDOW_DIMENSIONS[0] // 2
-        self.half_height = constants.WINDOW_DIMENSIONS[1] // 2
+        self.half_width = game_constants.WINDOW_DIMENSIONS[0] // 2
+        self.half_height = game_constants.WINDOW_DIMENSIONS[1] // 2
         self.offset = pygame.math.Vector2()
 
         # The floor.

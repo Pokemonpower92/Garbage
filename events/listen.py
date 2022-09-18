@@ -1,5 +1,5 @@
 import pygame
-from config import constants
+from config import game_constants
 
 
 def event_loop(game):

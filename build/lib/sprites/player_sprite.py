@@ -1,16 +1,13 @@
+from abc import abstractclassmethod
 import pygame
-from config import constants, resource_paths
+from config import game_constants, resource_paths
 
 
 class PlayerSprite(pygame.sprite.Sprite):
-    def __init__(self, tilemap, x=constants.PLAYER_START_X, y=constants.PLAYER_START_Y):
-        self.direction = pygame.math.Vector2(x=0, y=0)
-        self.velocity = constants.PLAYER_WALK_SPEED
-        self.sneaking = 0
-        self.sprinting = 0
-
+    def __init__(
+        self, tilemap, x=game_constants.PLAYER_START_X, y=game_constants.PLAYER_START_Y
+    ):
         self.tilemap = tilemap
-
         self.groups = self.tilemap.all_sprites
         self.image = pygame.image.load(resource_paths.TEST_PLAYER)
         self.rect = self.image.get_rect()
@@ -20,10 +17,25 @@ class PlayerSprite(pygame.sprite.Sprite):
 
         pygame.sprite.Sprite.__init__(self, self.groups)
 
+        # Movement.
+        self.direction = pygame.math.Vector2(x=0, y=0)
+        self.velocity = game_constants.PLAYER_WALK_SPEED
+        self.sneaking = False
+        self.sprinting = False
+
+        # Abilities.
+        self.attacking = False
+        self.attack_cooldown = game_constants.PLAYER_ATTACK_COOLDOWN
+        self.time_since_attack = 0
+
     def get_input(self):
         """Get the input for the player."""
 
         pressed_keys = pygame.key.get_pressed()
+
+        # Player is attacking.
+        if pressed_keys[pygame.K_SPACE]:
+            self.attack()
 
         # Player moving up/down.
         if pressed_keys[pygame.K_w]:
@@ -43,17 +55,35 @@ class PlayerSprite(pygame.sprite.Sprite):
 
         # Player is sprinting
         if pressed_keys[pygame.K_RETURN]:
-            self.velocity = constants.PLAYER_RUN_SPEED
+            self.velocity = game_constants.PLAYER_RUN_SPEED
+            self.sprinting = True
+            self.sneaking = False
+
+        # Player is sneaking
         elif pressed_keys[pygame.K_RSHIFT]:
-            self.velocity = constants.PLAYER_SNEAK_SPEED
+            self.velocity = game_constants.PLAYER_SNEAK_SPEED
+            self.sneaking = True
+
+        # Player is walking normally
         else:
-            self.velocity = constants.PLAYER_WALK_SPEED
+            self.velocity = game_constants.PLAYER_WALK_SPEED
+            self.sprinting = False
+            self.sneaking = False
 
         if self.direction.magnitude() != 0:
             self.direction = self.direction.normalize()
 
         self.direction *= self.velocity
-        self.move(self.direction.x, self.direction.y)
+
+        pygame.event.pump()
+
+    def cooldowns(self):
+        """Tracks cooldowns for the player."""
+        pass
+
+    def attack(self):
+        """Performs an attack based on the class."""
+        pass
 
     def move(self, dx: int, dy: int):
         """Move the player by dx and dy"""
@@ -87,3 +117,5 @@ class PlayerSprite(pygame.sprite.Sprite):
 
     def update(self):
         self.get_input()
+        self.cooldowns()
+        self.move(self.direction.x, self.direction.y)

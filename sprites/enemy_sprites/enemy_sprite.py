@@ -1,5 +1,5 @@
 import pygame
-from config import constants, resource_paths, level_data
+from config import game_constants, resource_paths, level_data
 
 
 class EnemySprite(pygame.sprite.Sprite):
@@ -10,7 +10,11 @@ class EnemySprite(pygame.sprite.Sprite):
         self.level = level
         self.type = type
 
-        self.groups = self.level.all_sprites, self.level.enemy_sprites
+        self.groups = (
+            self.level.all_sprites,
+            self.level.enemy_sprites,
+            self.level.entity_sprites,
+        )
         self.image = self.load_image()
         self.rect = self.image.get_rect()
 

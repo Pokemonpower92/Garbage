@@ -1,5 +1,5 @@
 import pygame
-from config import constants, resource_paths
+from config import game_constants, resource_paths
 
 
 class FloorSprite(pygame.sprite.Sprite):
@@ -16,5 +16,5 @@ class FloorSprite(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self, self.groups)
         self.level.wall_sprites.add(self)
 
-        self.rect.x = self.x * constants.TILE_SIZE
-        self.rect.y = self.y * constants.TILE_SIZE
+        self.rect.x = self.x * game_constants.TILE_SIZE
+        self.rect.y = self.y * game_constants.TILE_SIZE

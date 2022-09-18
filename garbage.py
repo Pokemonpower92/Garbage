@@ -3,8 +3,8 @@ from sys import exit
 import os
 
 
-from config import constants, level_data
-from sprites.player_sprite import PlayerSprite
+from config import game_constants, level_data
+from sprites.player_sprites.player_mage_sprite import PlayerMageSprite
 from level import Level
 from utils import setup
 from events import listen
@@ -17,8 +17,8 @@ class Game:
         pygame.init()
 
         self.screen = setup.setup_window(
-            constants.WINDOW_DIMENSIONS,
-            constants.WINDOW_TITLE,
+            game_constants.WINDOW_DIMENSIONS,
+            game_constants.WINDOW_TITLE,
         )
 
         self.clock = pygame.time.Clock()
@@ -32,7 +32,7 @@ class Game:
 
         self.game_running = True
         while self.game_running:
-            self.clock.tick(constants.FPS)
+            self.clock.tick(game_constants.FPS)
             listen.event_loop(self)
             self.player.get_input()
             self.update()
@@ -53,19 +53,19 @@ class Game:
     def draw_grid(self):
         """Draw the grid."""
 
-        w = constants.WINDOW_DIMENSIONS[0]
-        h = constants.WINDOW_DIMENSIONS[1]
-        ts = constants.TILE_SIZE
+        w = game_constants.WINDOW_DIMENSIONS[0]
+        h = game_constants.WINDOW_DIMENSIONS[1]
+        ts = game_constants.TILE_SIZE
 
         for x in range(0, w, ts):
-            pygame.draw.line(self.screen, constants.GRID_COLOR, (x, 0), (x, h))
+            pygame.draw.line(self.screen, game_constants.GRID_COLOR, (x, 0), (x, h))
         for y in range(0, h, ts):
-            pygame.draw.line(self.screen, constants.GRID_COLOR, (0, y), (w, y))
+            pygame.draw.line(self.screen, game_constants.GRID_COLOR, (0, y), (w, y))
 
     def draw(self):
         """Draw our sprites."""
 
-        self.screen.fill(constants.BACKGROUND_COLOR)
+        self.screen.fill(game_constants.BACKGROUND_COLOR)
         self.draw_grid()
         self.level.all_sprites.custom_draw(self.player)
         pygame.display.update()
@@ -73,7 +73,7 @@ class Game:
     def load_assets(self):
         """Load the player, walls, enemies, pickups."""
         self.level = Level(self, level_data.LEVEL_0)
-        self.player = PlayerSprite(self.level)
+        self.player = PlayerMageSprite(self.level)
 
         self.level.load_level()
 

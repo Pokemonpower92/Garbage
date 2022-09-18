@@ -12,6 +12,7 @@ events/listen.py
 sprites/__init__.py
 sprites/enemy_sprite.py
 sprites/floor_sprite.py
+sprites/player_mage_sprite.py
 sprites/player_sprite.py
 sprites/wall_sprite.py
 utils/__init__.py
