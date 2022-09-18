@@ -1,4 +1,0 @@
-config
-events
-sprites
-utils
