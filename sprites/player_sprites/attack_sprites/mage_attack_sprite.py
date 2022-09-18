@@ -3,12 +3,12 @@ from .attack_sprite import AttackSprite
 from config import game_constants, player_constants, resource_paths
 
 
-class MageAttackSprite(AttackSprite):
+class FaireFireSprite(AttackSprite):
     def __init__(self, level, direction, x: int = 0, y: int = 0):
         super().__init__(level, x, y)
         self.constants = player_constants.MAGE_CONSTANTS
         self.direction = direction
-        self.velocity = self.constants["PLAYER_ATTACK_SPEED"] * direction
+        self.velocity = self.constants["FAIRE_FIRE_VELOCITY"] * direction
 
     def move(self):
         """Move the attack."""

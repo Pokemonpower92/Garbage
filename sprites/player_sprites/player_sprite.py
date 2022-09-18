@@ -20,22 +20,24 @@ class PlayerSprite(pygame.sprite.Sprite):
         # Movement.
         self.direction = pygame.math.Vector2(x=0, y=0)
         self.facing = pygame.math.Vector2(x=0, y=0)
-        self.sneaking = False
-        self.sprinting = False
-
-        # Abilities.
-        self.can_attack = True
-        self.time_since_attack = 0
 
     def get_input(self):
         """Get the input for the player."""
 
         pressed_keys = pygame.key.get_pressed()
 
-        # Player is attacking.
-        if pressed_keys[pygame.K_SPACE] and self.can_attack:
-            self.time_since_attack = pygame.time.get_ticks()
-            self.attack()
+        # ABILITIES
+        ## Ability 1
+        if pressed_keys[pygame.K_SPACE] and self.ability_one.can_cast:
+            self.ability_one.cast()
+
+        ## Ability 2
+        if pressed_keys[pygame.K_RETURN]:
+            self.ability_two.cast()
+
+        ## Ability 3
+        if pressed_keys[pygame.K_RSHIFT]:
+            self.ability_three.cast()
 
         # Player moving up/down.
         if pressed_keys[pygame.K_w]:
@@ -61,23 +63,6 @@ class PlayerSprite(pygame.sprite.Sprite):
         else:
             self.direction.x = 0
 
-        # Player is sprinting
-        if pressed_keys[pygame.K_RETURN]:
-            self.velocity = self.player_run_speed
-            self.sprinting = True
-            self.sneaking = False
-
-        # Player is sneaking
-        elif pressed_keys[pygame.K_RSHIFT]:
-            self.velocity = self.player_sneak_speed
-            self.sneaking = True
-
-        # Player is walking normally
-        else:
-            self.velocity = self.player_walk_speed
-            self.sprinting = False
-            self.sneaking = False
-
         if self.direction.magnitude() != 0:
             self.direction = self.direction.normalize()
 
@@ -87,7 +72,9 @@ class PlayerSprite(pygame.sprite.Sprite):
 
     def cooldowns(self):
         """Tracks cooldowns for the player."""
-        pass
+        self.ability_one.cooldown()
+        self.ability_two.cooldown()
+        self.ability_three.cooldown()
 
     def attack(self):
         """Performs an attack based on the class."""
