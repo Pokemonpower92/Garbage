@@ -1,4 +1,5 @@
 .vscode
 __pycache__
-FurFantasy.egg-info
+Garbage.egg-info
+build
 env
