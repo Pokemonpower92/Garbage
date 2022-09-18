@@ -23,6 +23,11 @@ class EnemySprite(pygame.sprite.Sprite):
         self.rect.x = self.x
         self.rect.y = self.y
 
+    def handle_attack_collision(self, attack):
+        print("Enemy Hit!")
+        self.kill()
+
     def load_image(self):
+        """Load an image for the enemy sprite"""
         image_path = self.level.level_data["graphics_paths"]["enemies"][self.type]
         return pygame.image.load(image_path)

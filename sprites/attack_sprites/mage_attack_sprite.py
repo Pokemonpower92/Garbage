@@ -9,7 +9,6 @@ class MageAttackSprite(AttackSprite):
         self.constants = player_constants.MAGE_CONSTANTS
         self.direction = direction
         self.velocity = self.constants["PLAYER_ATTACK_SPEED"] * direction
-        print(self.velocity)
 
     def move(self):
         """Move the attack."""

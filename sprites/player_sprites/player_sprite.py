@@ -123,6 +123,9 @@ class PlayerSprite(pygame.sprite.Sprite):
                     elif self.direction.y < 0:
                         self.hit_box.top = wall.rect.bottom
 
+    def handle_attack_collison(self, attack):
+        print("I was hit!")
+
     def update(self):
         self.get_input()
         self.cooldowns()

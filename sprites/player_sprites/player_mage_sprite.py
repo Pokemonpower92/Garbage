@@ -33,7 +33,7 @@ class PlayerMageSprite(PlayerSprite):
 
     def attack(self):
         """Handle attacks for the mage class."""
-        print("Attacking!")
+        self.velocity = self.constants["PLAYER_WALK_SPEED"]
         mage_attack_sprite.MageAttackSprite(
             self.level, self.facing, self.rect.x, self.rect.y
         )

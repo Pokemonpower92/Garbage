@@ -29,22 +29,7 @@ class AttackSprite(pygame.sprite.Sprite):
 
         for sprite in self.level.entity_sprites:
             if sprite.rect.colliderect(self.hit_box):
-                if axis == "x":
-                    # Moving right.
-                    if self.direction.x > 0:
-                        self.hit_box.right = sprite.rect.left
-
-                    elif self.direction.x < 0:
-                        self.hit_box.left = sprite.rect.right
-
-                if axis == "y":
-                    if self.direction.y > 0:
-                        self.hit_box.bottom = sprite.rect.top
-
-                    elif self.direction.y < 0:
-                        self.hit_box.top = sprite.rect.bottom
-
-                print("It's a hit!")
+                sprite.handle_attack_collision(self)
                 self.kill()
 
     def update(self):
