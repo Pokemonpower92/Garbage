@@ -32,7 +32,7 @@ class PlayerSprite(pygame.sprite.Sprite):
             self.ability_one.cast()
 
         ## Ability 2
-        if pressed_keys[pygame.K_RETURN]:
+        if pressed_keys[pygame.K_RETURN] and self.ability_two.can_cast:
             self.ability_two.cast()
 
         ## Ability 3

@@ -24,7 +24,7 @@ class EnemySprite(pygame.sprite.Sprite):
         self.rect.y = self.y
 
     def handle_attack_collision(self, attack):
-        print("Enemy Hit!")
+        print(f"Enemy Hit for {attack.damage} damage")
         self.kill()
 
     def load_image(self):

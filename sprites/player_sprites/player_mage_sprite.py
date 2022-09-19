@@ -17,5 +17,12 @@ class PlayerMageSprite(PlayerSprite):
         self.ability_two = mage_ability.Concentration(self)
         self.ability_three = mage_ability.Teleport(self)
 
+        self.faire_fire_base_damage = self.constants["FAIRE_FIRE_BASE_DAMAGE"]
+        self.faire_fire_actual_damage = self.faire_fire_base_damage
+        self.concentration_damage_modifier = self.constants[
+            "CONCENTRATION_DAMAGE_MODIFIER"
+        ]
+        self.concentration_effect_active = False
+
         # Movement configuration.
         self.velocity = self.constants["PLAYER_WALK_SPEED"]
