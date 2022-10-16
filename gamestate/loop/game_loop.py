@@ -5,23 +5,17 @@ import os
 
 from config import game_constants, level_data
 from sprites.player_sprites.player_mage_sprite import PlayerMageSprite
-from level import Level
-from utils import setup
+from gamestate.level.level import Level
 from events import listen
+from . import loop
 
 
-class Game:
-    def __init__(self):
+class GameLoop(loop.Loop):
+    def __init__(self, gamestate):
         """Initialize the game."""
+        super().__init__(gamestate)
 
-        pygame.init()
-
-        self.screen = setup.setup_window(
-            game_constants.WINDOW_DIMENSIONS,
-            game_constants.WINDOW_TITLE,
-        )
-
-        self.clock = pygame.time.Clock()
+        self.new()
 
     def new(self):
         """Initialize everything we need for a new game."""
@@ -30,8 +24,8 @@ class Game:
     def run(self):
         """Main game loop"""
 
-        self.game_running = True
-        while self.game_running:
+        self.running = True
+        while self.running:
             self.clock.tick(game_constants.FPS)
             listen.event_loop(self)
             self.player.get_input()
@@ -71,7 +65,7 @@ class Game:
         pygame.display.update()
 
     def load_assets(self):
-        """Load the player, walls, enemies, pickups."""
+        """Load the player and level."""
         self.level = Level(self, level_data.LEVEL_0)
         self.player = PlayerMageSprite(self.level)
 
@@ -85,13 +79,3 @@ class Game:
 
     def show_pause_screen(self):
         pass
-
-
-if __name__ == "__main__":
-    ff = Game()
-    ff.show_start_screen()
-
-    # Run the main game loop.
-    while True:
-        ff.new()
-        ff.run()

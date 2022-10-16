@@ -4,6 +4,11 @@ from config import game_constants, player_constants, resource_paths
 
 
 class PlayerSprite(pygame.sprite.Sprite):
+    """Base class for the player sprites.
+    PlayerMageSprite, PlayerRogueSprite, ect must implement all passed methods.
+
+    """
+
     def __init__(
         self, level, x=game_constants.PLAYER_START_X, y=game_constants.PLAYER_START_Y
     ):
@@ -20,6 +25,10 @@ class PlayerSprite(pygame.sprite.Sprite):
         # Movement.
         self.direction = pygame.math.Vector2(x=0, y=0)
         self.facing = pygame.math.Vector2(x=0, y=0)
+
+    def load_resources(self):
+        """Load the resources for the sprite. Child classes must implement this."""
+        pass
 
     def get_input(self):
         """Get the input for the player."""
@@ -51,7 +60,7 @@ class PlayerSprite(pygame.sprite.Sprite):
         else:
             self.direction.y = 0
 
-        # Player moving up/down.
+        # Player moving left/right.
         if pressed_keys[pygame.K_d]:
             self.direction.x = 1
             self.facing.x = 1
@@ -76,10 +85,6 @@ class PlayerSprite(pygame.sprite.Sprite):
         self.ability_two.cooldown()
         self.ability_three.cooldown()
 
-    def attack(self):
-        """Performs an attack based on the class."""
-        pass
-
     def move(self, dx: int, dy: int):
         """Move the player by dx and dy"""
 
@@ -96,7 +101,6 @@ class PlayerSprite(pygame.sprite.Sprite):
         for wall in self.level.wall_sprites:
             if wall.rect.colliderect(self.hit_box):
                 if axis == "x":
-                    # Moving right.
                     if self.direction.x > 0:
                         self.hit_box.right = wall.rect.left
 
@@ -111,7 +115,7 @@ class PlayerSprite(pygame.sprite.Sprite):
                         self.hit_box.top = wall.rect.bottom
 
     def handle_attack_collison(self, attack):
-        print("I was hit!")
+        print(f"I was hit! for {attack.damage} damage.")
 
     def update(self):
         self.get_input()
