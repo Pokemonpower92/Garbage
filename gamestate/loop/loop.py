@@ -15,6 +15,7 @@ class Loop(abc.ABC):
         )
 
         self.font = pygame.font.SysFont(None, 75)
+        
         self.clock = pygame.time.Clock()
         self.title_position = pygame.math.Vector2(
             game_constants.WINDOW_DIMENSIONS[0] // 2, 0

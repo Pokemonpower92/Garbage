@@ -18,16 +18,6 @@ class TitleScreenLoop(Loop):
 
     def draw(self):
         self.menu.all_sprites.custom_draw()
-        self.draw_text(
-            "Title", self.font, (255, 255, 255), self.screen, self.title_position
-        )
-        self.draw_text(
-            "Press 'enter'",
-            self.font,
-            (255, 255, 255),
-            self.screen,
-            self.message_position,
-        )
 
     def load_assets(self):
         self.menu = Menu(self.screen, menu_data.TITLE_SCREEN)

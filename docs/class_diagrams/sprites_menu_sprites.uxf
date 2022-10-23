@@ -1,0 +1,22 @@
+<diagram program="umletino" version="15.0.0"><zoom_level>10</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>30</x><y>360</y><w>190</w><h>100</h></coordinates><panel_attributes>ButtonSprite
+--
+-content : ButtonContent
+-image : pygame.image
+--
++check_mouseclick() : None
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>170</x><y>140</y><w>170</w><h>120</h></coordinates><panel_attributes>/AbstractClass/
+MenuSprite
+--
+-menu_data : Dict[str: Any]
+-x : int
+-y : int
+--
++load_resources() : None
++update() : None
++check_mousover() : None</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>290</x><y>360</y><w>190</w><h>100</h></coordinates><panel_attributes>TextSprite
+--
+-text : str
+-font : pygame.font
+--
++load_text() : None</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>110</x><y>310</y><w>290</w><h>30</h></coordinates><panel_attributes>lt=-</panel_attributes><additional_attributes>10;10;270;10</additional_attributes></element><element><id>Relation</id><coordinates><x>110</x><y>310</y><w>30</w><h>70</h></coordinates><panel_attributes>lt=-</panel_attributes><additional_attributes>10;50;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>370</x><y>310</y><w>30</w><h>70</h></coordinates><panel_attributes>lt=-</panel_attributes><additional_attributes>10;50;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>240</x><y>250</y><w>30</w><h>90</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;70</additional_attributes></element></diagram>
