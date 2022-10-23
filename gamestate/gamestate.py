@@ -1,4 +1,4 @@
-from .loop import title_screen_loop, main_menu_loop
+from gamestate.loop import title_screen_loop, main_menu_loop
 
 
 class Gamestate:

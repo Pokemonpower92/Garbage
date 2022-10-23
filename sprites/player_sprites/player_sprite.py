@@ -1,4 +1,3 @@
-from abc import abstractclassmethod
 import pygame
 from config import game_constants, player_constants, resource_paths
 
