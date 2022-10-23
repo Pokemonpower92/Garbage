@@ -2,20 +2,22 @@ import pygame
 from sys import exit
 import os
 
-from config import game_constants, level_data
+from config import game_constants, level_data, menu_data
 from utils import setup
 from events import listen
 from config import game_constants, level_data
 
-from .loop import Loop
+from gamestate.loop.loop import Loop
+from gamestate.menu.menu import Menu
 
 
 class TitleScreenLoop(Loop):
     def __init__(self, gamestate):
         super().__init__(gamestate)
+        self.load_assets()
 
     def draw(self):
-        self.screen.fill((0, 0, 0))
+        self.menu.all_sprites.custom_draw()
         self.draw_text(
             "Title", self.font, (255, 255, 255), self.screen, self.title_position
         )
@@ -26,6 +28,9 @@ class TitleScreenLoop(Loop):
             self.screen,
             self.message_position,
         )
+
+    def load_assets(self):
+        self.menu = Menu(self.screen, menu_data.TITLE_SCREEN)
 
     def update(self):
         pygame.display.update()

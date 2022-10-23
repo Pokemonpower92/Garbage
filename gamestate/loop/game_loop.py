@@ -2,12 +2,12 @@ import pygame
 from sys import exit
 import os
 
+from gamestate.level.level import Level
+from gamestate.loop import loop
 
 from config import game_constants, level_data
 from sprites.player_sprites.player_mage_sprite import PlayerMageSprite
-from gamestate.level.level import Level
 from events import listen
-from . import loop
 
 
 class GameLoop(loop.Loop):

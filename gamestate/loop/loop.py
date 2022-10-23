@@ -30,6 +30,10 @@ class Loop(abc.ABC):
         pass
 
     @abc.abstractmethod
+    def load_assets(self):
+        pass
+
+    @abc.abstractmethod
     def update(self):
         pass
 

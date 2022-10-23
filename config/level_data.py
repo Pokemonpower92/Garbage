@@ -1,15 +1,10 @@
 from config import resource_paths
 from utils import data_management
 
-TITLE_SCREEN_PATHS = {}
-
-TITLE_SCREEN = {"floor_path": resource_paths.FLOOR_TILES + "/title_screen.png"}
-
 LEVEL_0_IMAGE_PATHS = {
     "walls": resource_paths.WALL_TILES + "/0/",
     "enemies": {"0": resource_paths.CAT_START},
 }
-
 LEVEL_0 = {
     "floor_path": resource_paths.FLOOR_TILES + "/level_0.png",
     "graphics_paths": LEVEL_0_IMAGE_PATHS,
