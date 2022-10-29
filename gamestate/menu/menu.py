@@ -1,6 +1,7 @@
 import pygame
 from config import game_constants, resource_paths
-from sprites.menu_sprites import text_sprite, button_sprite
+from sprites.menu_sprites import text_sprite
+from sprites.menu_sprites.button_sprites import button_sprite
 from utils import data_management
 
 
