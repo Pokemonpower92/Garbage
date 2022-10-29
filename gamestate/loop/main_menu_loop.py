@@ -4,7 +4,7 @@ import os
 
 from gamestate.loop import game_loop
 from gamestate.loop.loop import Loop
-from gamestate.menu.menu import Menu
+from gamestate.menu.main_menu import MainMenu
 
 from config import game_constants, menu_data
 from utils import setup
@@ -23,7 +23,7 @@ class MainMenuLoop(Loop):
         self.menu.draw_button_sprites()
 
     def load_assets(self):
-        self.menu = Menu(self.screen, menu_data.MAIN_MENU)
+        self.menu = MainMenu(self.screen, menu_data.MAIN_MENU)
 
     def update(self):
         pygame.display.update()
@@ -39,7 +39,8 @@ class MainMenuLoop(Loop):
     def event_loop(self):
         listen.event_loop(self)
 
-        pressed_keys = pygame.key.get_pressed()
+        self.menu.check_events()
 
+        pressed_keys = pygame.key.get_pressed()
         if pressed_keys[pygame.K_SPACE]:
             self.game_loop.run()

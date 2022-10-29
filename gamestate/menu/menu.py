@@ -39,6 +39,10 @@ class Menu:
     def draw_button_sprites(self):
         self.button_sprites.custom_draw()
 
+    def check_events(self):
+        for sprite in self.button_sprites:
+            sprite.check_mouse_event()
+
 
 class TextSpriteGroup(pygame.sprite.Group):
     def __init__(self, screen):
