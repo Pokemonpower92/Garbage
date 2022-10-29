@@ -55,11 +55,11 @@ class TextContent:
         self.font = pygame.font.SysFont(values["font"][0], values["font"][1])
         self.text = self.font.render(values["text"], 1, values["text_color"])
         self.text_rect = self.text.get_rect()
-        self.text_position = values["position"]
+        self.text_rect.center = values["position"]
 
     def draw_content(self, screen):
         pygame.draw.rect(screen, self.color, self.button_rect)
-        screen.blit(self.text, self.text_position)
+        screen.blit(self.text, self.text_rect.topleft)
 
 
 class IconContent:
