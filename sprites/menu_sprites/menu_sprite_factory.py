@@ -2,10 +2,10 @@ from sprites.menu_sprites import button_sprite, text_sprite
 
 
 class MenuSpriteFactory:
+    def __init__(self, menu):
+        self.menu = menu
 
-    def __init__(self):
-
-    def create_menu_sprite(sprite_type: str) -> None:
+    def create_menu_sprite(self, sprite_type: str) -> None:
         """Simple factory method.
 
         :param sprite_type: The type of sprite to create.
@@ -13,8 +13,8 @@ class MenuSpriteFactory:
         """
 
         if sprite_type == "text":
-            return text_sprite.TextSprite()
+            return text_sprite.TextSprite(self.menu)
         elif sprite_type == "button":
-            return button_sprite.ButtonSprite()
+            return button_sprite.ButtonSprite(self.menu)
         else:
             raise TypeError("No such menu spite type.")

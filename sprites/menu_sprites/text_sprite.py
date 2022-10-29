@@ -7,7 +7,7 @@ import gamestate
 
 
 class TextSprite(menu_sprite.MenuSprite):
-    def __init__(self, menu, values) -> None:
+    def __init__(self, menu) -> None:
         super().__init__()
 
         self.menu = menu
@@ -15,19 +15,15 @@ class TextSprite(menu_sprite.MenuSprite):
         self.groups = (self.menu.all_sprites, self.menu.text_sprites)
         pygame.sprite.Sprite.__init__(self, self.groups)
 
-        self.values = values
-
-        self.load_content()
-
-    def load_content(self) -> None:
+    def load_content(self, values) -> None:
         """Load the resources for the sprite.
         :return: void
         """
-        self.font = pygame.font.SysFont(self.values["font"][0], self.values["font"][1])
-        self.content = self.font.render(self.values["text"], 1, self.values["color"])
+        self.font = pygame.font.SysFont(values["font"][0], values["font"][1])
+        self.content = self.font.render(values["text"], 1, values["color"])
         self.content_rect = self.content.get_rect()
 
-        self.position = self.values["position"]
+        self.position = values["position"]
 
     def update(self) -> None:
         """Update the sprite."""

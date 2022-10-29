@@ -11,15 +11,11 @@ class ButtonSprite(menu_sprite.MenuSprite):
 
         self.groups = (self.menu.all_sprites, self.menu.text_sprites)
         pygame.sprite.Sprite.__init__(self, self.groups)
-
         self.values = values
-
-        self.load_content()
 
     def load_content(self):
         """Load the resources for the sprite."""
-        
-        if self.values["type"] == 'icon':
+        pass
 
     def update(self):
         """Update the sprite."""
@@ -28,10 +24,3 @@ class ButtonSprite(menu_sprite.MenuSprite):
     def check_mouseover(self):
         """Check for a mouseover event."""
         pass
-
-
-class ButtonContent():
-   """This class holds whatever content the button should render."""
-
-   def __init__(self, values):
-
