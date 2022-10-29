@@ -12,7 +12,7 @@ class MenuSprite(pygame.sprite.Sprite):
     def __init__(self):
         pass
 
-    def load_resources(self):
+    def load_content(self):
         """Load the resources for the sprite."""
         pass
 

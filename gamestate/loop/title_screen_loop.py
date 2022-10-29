@@ -17,7 +17,9 @@ class TitleScreenLoop(Loop):
         self.load_assets()
 
     def draw(self):
-        self.menu.all_sprites.custom_draw()
+        self.menu.draw_background()
+        self.menu.draw_text_sprites()
+        self.menu.draw_button_sprites()
 
     def load_assets(self):
         self.menu = Menu(self.screen, menu_data.TITLE_SCREEN)
