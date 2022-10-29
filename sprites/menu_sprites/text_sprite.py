@@ -12,7 +12,7 @@ class TextSprite(menu_sprite.MenuSprite):
 
         self.menu = menu
 
-        self.groups = (self.menu.all_sprites, self.menu.text_sprites)
+        self.groups = self.menu.text_sprites
         pygame.sprite.Sprite.__init__(self, self.groups)
 
     def load_content(self, values) -> None:

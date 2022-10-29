@@ -4,9 +4,9 @@ import os
 
 from gamestate.loop import game_loop
 from gamestate.loop.loop import Loop
-from gamestate.level.level import Level
+from gamestate.menu.menu import Menu
 
-from config import game_constants, level_data
+from config import game_constants, menu_data
 from utils import setup
 from events import listen
 
@@ -15,22 +15,15 @@ class MainMenuLoop(Loop):
     def __init__(self, gamestate):
         super().__init__(gamestate)
         self.game_loop = game_loop.GameLoop(gamestate)
+        self.load_assets()
 
     def draw(self):
-        self.screen.fill((0, 0, 0))
-        self.draw_text(
-            "main menu", self.font, (255, 255, 255), self.screen, self.title_position
-        )
-        self.draw_text(
-            "Press 'space'",
-            self.font,
-            (255, 255, 255),
-            self.screen,
-            self.message_position,
-        )
+        self.menu.draw_background()
+        self.menu.draw_text_sprites()
+        self.menu.draw_button_sprites()
 
     def load_assets(self):
-        self.level = Level(self, level_data.MAIN_MENU)
+        self.menu = Menu(self.screen, menu_data.MAIN_MENU)
 
     def update(self):
         pygame.display.update()

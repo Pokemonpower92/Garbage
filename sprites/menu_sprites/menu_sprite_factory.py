@@ -1,4 +1,5 @@
-from sprites.menu_sprites import button_sprite, text_sprite
+from sprites.menu_sprites import text_sprite
+from sprites.menu_sprites import button_sprite
 
 
 class MenuSpriteFactory:
