@@ -1,7 +1,10 @@
 import pygame
 from config import game_constants, resource_paths
-from sprites.menu_sprites import text_sprite
-from sprites.menu_sprites.button_sprites import button_sprite
+from sprites.menu_sprites import (
+    text_sprite,
+    button_sprite,
+    menu_sprite_factory
+)
 from utils import data_management
 
 
@@ -10,6 +13,8 @@ class Menu:
 
         self.menu_data = menu_data
         self.screen = screen
+
+        self.sprite_factory = menu_sprite_factory.MenuSpriteFactory()
 
         # Create all the sprites for the menu.
         self.all_sprites = MenuSpriteGroup(screen, menu_data)
@@ -40,7 +45,8 @@ class MenuSpriteGroup(pygame.sprite.Group):
         self.screen = screen
         self.menu_data = menu_data
         # The background.
-        self.background_surface = pygame.image.load(self.menu_data["background_path"])
+        self.background_surface = pygame.image.load(
+            self.menu_data["background_path"])
 
     def custom_draw(self):
 
