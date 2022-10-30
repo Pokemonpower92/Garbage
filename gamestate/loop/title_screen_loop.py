@@ -8,13 +8,15 @@ from events import listen
 from config import game_constants, level_data
 
 from gamestate.loop.loop import Loop
+from gamestate.loop.main_menu_loop import MainMenuLoop
 from gamestate.menu.menu import Menu
 
 
 class TitleScreenLoop(Loop):
-    def __init__(self, gamestate):
-        super().__init__(gamestate)
+    def __init__(self):
+        super().__init__()
         self.load_assets()
+        self.main_menu_loop = MainMenuLoop()
 
     def draw(self):
         self.menu.draw_background()
@@ -41,4 +43,4 @@ class TitleScreenLoop(Loop):
         pressed_keys = pygame.key.get_pressed()
 
         if pressed_keys[pygame.K_RETURN]:
-            self.gamestate.run_game_loop()
+            self.main_menu_loop.run()
