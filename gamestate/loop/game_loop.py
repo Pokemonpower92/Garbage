@@ -11,9 +11,9 @@ from events import listen
 
 
 class GameLoop(loop.Loop):
-    def __init__(self, gamestate):
+    def __init__(self):
         """Initialize the game."""
-        super().__init__(gamestate)
+        super().__init__()
 
         self.new()
 

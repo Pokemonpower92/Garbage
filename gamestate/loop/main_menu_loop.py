@@ -12,9 +12,9 @@ from events import listen
 
 
 class MainMenuLoop(Loop):
-    def __init__(self, gamestate):
-        super().__init__(gamestate)
-        self.game_loop = game_loop.GameLoop(gamestate)
+    def __init__(self):
+        super().__init__()
+        self.game_loop = game_loop.GameLoop()
         self.load_assets()
 
     def draw(self):

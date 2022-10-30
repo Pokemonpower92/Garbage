@@ -5,6 +5,8 @@ from sprites.menu_sprites import button_sprite
 from utils import data_management
 from gamestate.menu import menu
 
+from gamestate.loop import game_loop
+
 
 class MainMenu(menu.Menu):
     def __init__(self, screen, menu_data):
@@ -12,7 +14,7 @@ class MainMenu(menu.Menu):
         self.define_loops()
 
     def define_loops(self):
-        self.new_game_loop = "New Game Loop"
+        self.new_game_loop = game_loop.GameLoop()
         self.load_game_loop = "Load Game Loop"
         self.options_loop = "Options Loop"
 

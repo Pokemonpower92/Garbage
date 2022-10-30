@@ -6,16 +6,14 @@ from config import game_constants
 
 
 class Loop(abc.ABC):
-    def __init__(self, gamestate):
-        self.gamestate = gamestate
-
+    def __init__(self):
         self.screen = setup.setup_window(
             game_constants.WINDOW_DIMENSIONS,
             game_constants.WINDOW_TITLE,
         )
 
         self.font = pygame.font.SysFont(None, 75)
-        
+
         self.clock = pygame.time.Clock()
         self.title_position = pygame.math.Vector2(
             game_constants.WINDOW_DIMENSIONS[0] // 2, 0
