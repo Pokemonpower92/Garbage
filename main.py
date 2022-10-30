@@ -1,7 +1,8 @@
-from gamestate import gamestate
+from gamestate.loop.title_screen_loop import TitleScreenLoop
 import pygame
 
 if __name__ == "__main__":
     pygame.init()
-    gs = gamestate.Gamestate()
-    gs.run_title_screen()
+    tsl = TitleScreenLoop()
+
+    tsl.run()
