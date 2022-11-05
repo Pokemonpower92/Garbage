@@ -1,5 +1,4 @@
 import pygame
-from sys import exit
 import os
 
 from config import menu_data
@@ -14,7 +13,7 @@ class PauseMenuLoop(Loop):
         super().__init__()
         self.load_assets()
         self.time_since_loop_started = pygame.time.get_ticks()
-        self.can_exit = False
+        self.can_interact = False
 
     def draw(self):
         self.menu.draw_background()
@@ -28,6 +27,8 @@ class PauseMenuLoop(Loop):
         pygame.display.update()
 
     def run(self):
+        self.time_since_loop_started = pygame.time.get_ticks()
+
         self.running = True
         while self.running:
             self.cooldown()
@@ -40,12 +41,14 @@ class PauseMenuLoop(Loop):
         delta_time = current_time - self.time_since_loop_started
 
         if delta_time >= 500:
-            self.can_exit = True
+            self.can_interact = True
 
     def event_loop(self):
-
         listen.event_loop()
-        pressed_keys = pygame.key.get_pressed()
-        if pressed_keys[pygame.K_ESCAPE]:
-            if self.can_exit:
-                self.running = False
+
+        if self.can_interact:
+            self.menu.check_events()
+            pressed_keys = pygame.key.get_pressed()
+            if pressed_keys[pygame.K_ESCAPE]:
+                if self.can_interact:
+                    self.running = False

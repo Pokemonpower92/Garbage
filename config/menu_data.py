@@ -73,8 +73,8 @@ PAUSE_MENU = {
         "text": [],
         "button": [
             {
-                "position": (game_constants.WINDOW_DIMENSIONS[0] // 2, 110),
-                "dimensions": (700, 200),
+                "position": (game_constants.WINDOW_DIMENSIONS[0] // 2, 60),
+                "dimensions": (480, 100),
                 "type": "text",
                 "name": "new_game_button",
                 "font": (None, 75),
@@ -86,8 +86,8 @@ PAUSE_MENU = {
                 "border_radius": 12,
             },
             {
-                "position": (game_constants.WINDOW_DIMENSIONS[0] // 2, 320),
-                "dimensions": (700, 200),
+                "position": (game_constants.WINDOW_DIMENSIONS[0] // 2, 170),
+                "dimensions": (480, 100),
                 "type": "text",
                 "name": "load_game_button",
                 "font": (None, 75),
@@ -99,8 +99,8 @@ PAUSE_MENU = {
                 "border_radius": 12,
             },
             {
-                "position": (game_constants.WINDOW_DIMENSIONS[0] // 2, 530),
-                "dimensions": (700, 200),
+                "position": (game_constants.WINDOW_DIMENSIONS[0] // 2, 280),
+                "dimensions": (480, 100),
                 "type": "text",
                 "name": "options_button",
                 "font": (None, 75),
@@ -112,8 +112,8 @@ PAUSE_MENU = {
                 "border_radius": 12,
             },
             {
-                "position": (game_constants.WINDOW_DIMENSIONS[0] // 2, 110),
-                "dimensions": (700, 200),
+                "position": (game_constants.WINDOW_DIMENSIONS[0] // 2, 390),
+                "dimensions": (480, 100),
                 "type": "text",
                 "name": "character_screen_button",
                 "font": (None, 75),
@@ -125,8 +125,8 @@ PAUSE_MENU = {
                 "border_radius": 12,
             },
             {
-                "position": (game_constants.WINDOW_DIMENSIONS[0] // 2, 110),
-                "dimensions": (700, 200),
+                "position": (game_constants.WINDOW_DIMENSIONS[0] // 2, 500),
+                "dimensions": (480, 100),
                 "type": "text",
                 "name": "save_game_button",
                 "font": (None, 75),
@@ -138,8 +138,8 @@ PAUSE_MENU = {
                 "border_radius": 12,
             },
             {
-                "position": (game_constants.WINDOW_DIMENSIONS[0] // 2, 110),
-                "dimensions": (700, 200),
+                "position": (game_constants.WINDOW_DIMENSIONS[0] // 2, 610),
+                "dimensions": (480, 100),
                 "type": "text",
                 "name": "exit_game_button",
                 "font": (None, 75),
