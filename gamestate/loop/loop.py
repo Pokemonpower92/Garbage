@@ -1,4 +1,5 @@
 import abc
+from typing import Tuple
 import pygame
 from utils import setup
 
@@ -6,6 +7,8 @@ from config import game_constants
 
 
 class Loop(abc.ABC):
+    """Loops are where all interation with the game from uses occurs."""
+
     def __init__(self):
         self.screen = setup.setup_window(
             game_constants.WINDOW_DIMENSIONS,
@@ -25,29 +28,40 @@ class Loop(abc.ABC):
         )
 
     @abc.abstractmethod
-    def draw(self):
+    def draw(self) -> None:
+        """Draw all of the sprites associated with the loop."""
         pass
 
     @abc.abstractmethod
-    def load_assets(self):
+    def load_assets(self) -> None:
+        """Load the assets that belong to the loop."""
         pass
 
     @abc.abstractmethod
     def update(self):
+        """Update the screen"""
         pass
 
     @abc.abstractmethod
-    def run(self):
+    def run(self) -> None:
+        """Run the loop."""
         pass
 
-    def draw_text(self, text, font, color, surface, pos):
+    def draw_text(
+        self,
+        text: str,
+        font: pygame.font,
+        color: Tuple,
+        surface: pygame.surface,
+        pos: Tuple,
+    ) -> None:
         textobj = font.render(text, 1, color)
         textrect = textobj.get_rect()
         textrect.midtop = pos
         surface.blit(textobj, textrect)
 
-    def quit(self):
-        """Quit the game."""
+    def quit(self) -> None:
+        """Quit the loop."""
 
         pygame.quit()
         exit()
