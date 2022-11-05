@@ -1,6 +1,4 @@
 import pygame
-from sys import exit
-import os
 
 from gamestate.level.level import Level
 from gamestate.loop import loop
@@ -13,14 +11,11 @@ from events import listen
 
 class GameLoop(loop.Loop):
     def __init__(self):
-        """Initialize the game."""
         super().__init__()
         self.load_assets()
         self.time_unpaused = 0
 
     def run(self):
-        """Main game loop"""
-
         self.running = True
         while self.running:
             self.clock.tick(game_constants.FPS)
@@ -41,16 +36,10 @@ class GameLoop(loop.Loop):
             self.time_unpaused = pygame.time.get_ticks()
 
     def update(self):
-        """Update all the objects."""
-
-        # Key cooldowns for things like pausing.
-
         for s in self.level.all_sprites:
             s.update()
 
     def draw(self):
-        """Draw our sprites."""
-
         self.screen.fill(game_constants.BACKGROUND_COLOR)
         self.level.all_sprites.custom_draw(self.player)
         pygame.display.update()

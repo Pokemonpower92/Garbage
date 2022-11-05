@@ -6,6 +6,8 @@ from events import listen
 
 
 class MenuLoop(Loop):
+    """Menu loops run when menus are evoked. Each should implement its own menu class to load."""
+
     def __init__(self):
         super().__init__()
         self.load_assets()
@@ -22,6 +24,7 @@ class MenuLoop(Loop):
         pass
 
     def update(self):
+        """Update the display."""
         pygame.display.update()
 
     def run(self):
