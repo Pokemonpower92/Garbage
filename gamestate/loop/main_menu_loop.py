@@ -2,19 +2,17 @@ import pygame
 from sys import exit
 import os
 
-from gamestate.loop import game_loop
+from gamestate.loop import game_loop, pause_menu_loop
 from gamestate.loop.loop import Loop
 from gamestate.menu.main_menu import MainMenu
 
-from config import game_constants, menu_data
-from utils import setup
+from config import menu_data
 from events import listen
 
 
 class MainMenuLoop(Loop):
     def __init__(self):
         super().__init__()
-        self.game_loop = game_loop.GameLoop()
         self.load_assets()
 
     def draw(self):
@@ -37,10 +35,9 @@ class MainMenuLoop(Loop):
             self.draw()
 
     def event_loop(self):
-        listen.event_loop(self)
-
+        listen.event_loop()
         self.menu.check_events()
 
         pressed_keys = pygame.key.get_pressed()
         if pressed_keys[pygame.K_SPACE]:
-            self.game_loop.run()
+            game_loop.GameLoop().run()
