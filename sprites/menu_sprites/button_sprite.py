@@ -78,11 +78,18 @@ class TextContent:
     def draw_content(self, screen, mouseover):
         if mouseover:
             self.text_content = self.font.render(self.text, 1, self.hover_text_color)
-            pygame.draw.rect(screen, self.hover_color, self.button_rect)
+            pygame.draw.rect(
+                screen,
+                self.hover_color,
+                self.button_rect,
+                border_radius=self.border_radius,
+            )
             screen.blit(self.text_content, self.text_rect.topleft)
         else:
             self.text_content = self.font.render(self.text, 1, self.text_color)
-            pygame.draw.rect(screen, self.color, self.button_rect)
+            pygame.draw.rect(
+                screen, self.color, self.button_rect, border_radius=self.border_radius
+            )
             screen.blit(self.text_content, self.text_rect.topleft)
 
 

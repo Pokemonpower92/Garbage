@@ -4,6 +4,7 @@ import os
 
 from gamestate.level.level import Level
 from gamestate.loop import loop
+from gamestate.loop.pause_menu_loop import PauseMenuLoop
 
 from config import game_constants, level_data
 from sprites.player_sprites.player_mage_sprite import PlayerMageSprite
@@ -14,12 +15,8 @@ class GameLoop(loop.Loop):
     def __init__(self):
         """Initialize the game."""
         super().__init__()
-
-        self.new()
-
-    def new(self):
-        """Initialize everything we need for a new game."""
         self.load_assets()
+        self.time_unpaused = 0
 
     def run(self):
         """Main game loop"""
@@ -27,40 +24,34 @@ class GameLoop(loop.Loop):
         self.running = True
         while self.running:
             self.clock.tick(game_constants.FPS)
-            listen.event_loop(self)
+            self.event_loop()
             self.player.get_input()
             self.update()
             self.draw()
 
-    def quit(self):
-        """Quit the game."""
+    def event_loop(self):
+        listen.event_loop()
 
-        pygame.quit()
-        exit()
+        self.time_before_pause = pygame.time.get_ticks()
+        delta_time = self.time_before_pause - self.time_unpaused
+
+        pressed_keys = pygame.key.get_pressed()
+        if pressed_keys[pygame.K_ESCAPE] and delta_time >= 500:
+            PauseMenuLoop().run()
+            self.time_unpaused = pygame.time.get_ticks()
 
     def update(self):
         """Update all the objects."""
 
+        # Key cooldowns for things like pausing.
+
         for s in self.level.all_sprites:
             s.update()
-
-    def draw_grid(self):
-        """Draw the grid."""
-
-        w = game_constants.WINDOW_DIMENSIONS[0]
-        h = game_constants.WINDOW_DIMENSIONS[1]
-        ts = game_constants.TILE_SIZE
-
-        for x in range(0, w, ts):
-            pygame.draw.line(self.screen, game_constants.GRID_COLOR, (x, 0), (x, h))
-        for y in range(0, h, ts):
-            pygame.draw.line(self.screen, game_constants.GRID_COLOR, (0, y), (w, y))
 
     def draw(self):
         """Draw our sprites."""
 
         self.screen.fill(game_constants.BACKGROUND_COLOR)
-        self.draw_grid()
         self.level.all_sprites.custom_draw(self.player)
         pygame.display.update()
 
@@ -70,12 +61,3 @@ class GameLoop(loop.Loop):
         self.player = PlayerMageSprite(self.level)
 
         self.level.load_level()
-
-    def show_start_screen(self):
-        pass
-
-    def show_main_menu(self):
-        pass
-
-    def show_pause_screen(self):
-        pass
