@@ -1,7 +1,9 @@
 import pygame
-from config import game_constants, player_constants, resource_paths
+from config import player_constants, animation_sets
 from .player_sprite import PlayerSprite
 from .abilities import mage_ability
+
+from sprites.animation.player_animation_group import PlayerAnimationGroup
 
 
 class PlayerMageSprite(PlayerSprite):
@@ -26,3 +28,11 @@ class PlayerMageSprite(PlayerSprite):
 
         # Movement configuration.
         self.velocity = self.constants["PLAYER_WALK_SPEED"]
+
+        self.load_resources()
+
+    def load_resources(self):
+        """Load resources for the sprite."""
+        self.animation_group = PlayerAnimationGroup().load_animation_sets(
+            animation_sets.PLAYER_MAGE_ANIMATION_SETS
+        )

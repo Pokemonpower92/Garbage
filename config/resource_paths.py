@@ -34,3 +34,7 @@ LEVEL_0_DATA = os.path.abspath("resources/levels/0")
 
 TEST_PLAYER = GRAPHICS_PATH + "/test/down_0.png"
 TEST_ROCK = GRAPHICS_PATH + "/test/rock.png"
+
+
+# Player animations
+PLAYER_MAGE_ANIMATIONS = GRAPHICS_PATH + "/player/mage"
