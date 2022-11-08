@@ -1,5 +1,6 @@
 import pygame
-from config import game_constants, player_constants, resource_paths
+from config import game_constants, resource_paths
+from sprites.animation.player_animation_group import PlayerAnimationGroup
 
 
 class PlayerSprite(pygame.sprite.Sprite):
@@ -25,9 +26,10 @@ class PlayerSprite(pygame.sprite.Sprite):
         self.direction = pygame.math.Vector2(x=0, y=0)
         self.facing = pygame.math.Vector2(x=0, y=0)
 
+        self.animation_group = None
+
     def load_resources(self):
         """Load the resources for the sprite. Child classes must implement this."""
-        pass
 
     def get_input(self):
         """Get the input for the player."""
@@ -116,7 +118,11 @@ class PlayerSprite(pygame.sprite.Sprite):
     def handle_attack_collison(self, attack):
         print(f"I was hit! for {attack.damage} damage.")
 
+    def update_image(self):
+        self.image = self.animation_group.advance_animation()
+
     def update(self):
         self.get_input()
+        self.update_image()
         self.cooldowns()
         self.move(self.direction.x, self.direction.y)
