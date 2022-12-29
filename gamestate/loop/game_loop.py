@@ -19,10 +19,12 @@ class GameLoop(loop.Loop):
         self.running = True
         while self.running:
             self.clock.tick(game_constants.FPS)
-            self.event_loop()
             self.player.get_input()
+            self.event_loop()
             self.update()
             self.draw()
+
+        print("Game run loop ending")
 
     def event_loop(self):
         listen.event_loop()
@@ -32,7 +34,7 @@ class GameLoop(loop.Loop):
 
         pressed_keys = pygame.key.get_pressed()
         if pressed_keys[pygame.K_ESCAPE] and delta_time >= 500:
-            PauseMenuLoop().run()
+            PauseMenuLoop(self).run()
             self.time_unpaused = pygame.time.get_ticks()
 
     def update(self):

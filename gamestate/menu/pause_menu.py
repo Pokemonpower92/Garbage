@@ -1,10 +1,14 @@
 from gamestate.menu.menu import Menu
 from gamestate.loop import main_menu_loop
 
+import pygame
+
 
 class PauseMenu(Menu):
-    def __init__(self, screen, menu_data):
+    def __init__(self, screen, menu_data, game_loop, pause_menu_loop):
         super().__init__(screen, menu_data)
+        self.game_loop = game_loop
+        self.pause_menu_loop = pause_menu_loop
         self.define_loops()
 
     def define_loops(self):
@@ -29,4 +33,10 @@ class PauseMenu(Menu):
             clicked, button = sprite.check_mouse_event()
 
             if clicked:
+                # If we exit the game we need to end both loops.
+                if button == "exit_game_button":
+                    self.game_loop.running = False
+                    self.pause_menu_loop.running = False
+                    return
+
                 self.loops[button].run()

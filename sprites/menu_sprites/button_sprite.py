@@ -2,7 +2,7 @@ from typing import Dict, Any
 
 import pygame
 from sprites.menu_sprites import menu_sprite
-import gamestate
+from gamestate.globalTimers.globalTimers import globalTimers
 
 
 class ButtonSprite(menu_sprite.MenuSprite):
@@ -35,7 +35,9 @@ class ButtonSprite(menu_sprite.MenuSprite):
         if self.content.button_rect.collidepoint(mouse_pos):
             self.mouseover = True
             if pygame.mouse.get_pressed()[0]:
-                self.clicked = True
+                if globalTimers.get_instance().check_button_cooldown():
+                    self.clicked = True
+                    globalTimers.get_instance().set_button_timer()
         else:
             self.mouseover = False
             self.clicked = False

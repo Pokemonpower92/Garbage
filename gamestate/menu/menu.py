@@ -41,7 +41,10 @@ class Menu:
 
     def check_events(self):
         for sprite in self.button_sprites:
-            sprite.check_mouse_event()
+            clicked, button = sprite.check_mouse_event()
+
+            if clicked:
+                self.loops[button].run()
 
 
 class TextSpriteGroup(pygame.sprite.Group):
