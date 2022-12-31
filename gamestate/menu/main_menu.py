@@ -11,22 +11,11 @@ from gamestate.loop import game_loop
 class MainMenu(menu.Menu):
     def __init__(self, screen, menu_data):
         super().__init__(screen, menu_data)
-        self.define_loops()
-
-    def define_loops(self):
-        self.new_game_loop = game_loop.GameLoop()
-        self.load_game_loop = "Load Game Loop"
-        self.options_loop = "Options Loop"
-
-        self.loops = {
-            "new_game_button": self.new_game_loop,
-            "load_game_button": self.load_game_loop,
-            "options_button": self.options_loop,
-        }
 
     def check_events(self):
         for sprite in self.button_sprites:
             clicked, button = sprite.check_mouse_event()
 
             if clicked:
-                self.loops[button].run()
+                if button == "new_game_button":
+                    game_loop.GameLoop().start_new_game()

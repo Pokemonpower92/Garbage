@@ -4,7 +4,7 @@ from gamestate.level.level import Level
 from gamestate.loop import loop
 from gamestate.loop.pause_menu_loop import PauseMenuLoop
 
-from config import game_constants, level_data
+from config import game_constants, level_data, animation_sets
 from sprites.player_sprites.player_mage_sprite import PlayerMageSprite
 from events import listen
 
@@ -12,8 +12,11 @@ from events import listen
 class GameLoop(loop.Loop):
     def __init__(self):
         super().__init__()
+
+    def start_new_game(self):
         self.load_assets()
         self.time_unpaused = 0
+        self.run()
 
     def run(self):
         self.running = True
@@ -24,8 +27,6 @@ class GameLoop(loop.Loop):
             self.update()
             self.draw()
 
-        print("Game run loop ending")
-
     def event_loop(self):
         listen.event_loop()
 
@@ -33,7 +34,7 @@ class GameLoop(loop.Loop):
         delta_time = self.time_before_pause - self.time_unpaused
 
         pressed_keys = pygame.key.get_pressed()
-        if pressed_keys[pygame.K_ESCAPE] and delta_time >= 500:
+        if pressed_keys[pygame.K_p] and delta_time >= 500:
             PauseMenuLoop(self).run()
             self.time_unpaused = pygame.time.get_ticks()
 
@@ -48,6 +49,7 @@ class GameLoop(loop.Loop):
 
     def load_assets(self):
         """Load the player and level."""
+
         self.level = Level(self, level_data.LEVEL_0)
         self.player = PlayerMageSprite(self.level)
 

@@ -6,7 +6,6 @@ class AnimationSet:
     """This is a wrapper for working with lists of animation images."""
 
     def __init__(self, image_set: List):
-
         self.image_set = image_set
         self.current_image = 0
 

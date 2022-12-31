@@ -4,6 +4,7 @@ from .player_sprite import PlayerSprite
 from .abilities import mage_ability
 
 from sprites.animation.player_animation_group import PlayerAnimationGroup
+import copy
 
 
 class PlayerMageSprite(PlayerSprite):
@@ -34,5 +35,5 @@ class PlayerMageSprite(PlayerSprite):
     def load_resources(self):
         """Load resources for the sprite."""
         self.animation_group = PlayerAnimationGroup().load_animation_sets(
-            animation_sets.PLAYER_MAGE_ANIMATION_SETS
+            copy.deepcopy(animation_sets.PLAYER_MAGE_ANIMATION_SETS)
         )
