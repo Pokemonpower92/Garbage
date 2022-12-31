@@ -21,7 +21,8 @@ class PauseMenuLoop(MenuLoop):
     def event_loop(self):
         listen.event_loop()
 
-        self.menu.check_events()
-        pressed_keys = pygame.key.get_pressed()
-        if pressed_keys[pygame.K_ESCAPE]:
-            self.running = False
+        if self.can_interact():
+            self.menu.check_events()
+            pressed_keys = pygame.key.get_pressed()
+            if pressed_keys[pygame.K_p]:
+                self.running = False

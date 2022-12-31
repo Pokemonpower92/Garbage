@@ -11,7 +11,6 @@ class MenuLoop(Loop):
 
     def __init__(self):
         super().__init__()
-        self.can_interact = False
 
     def draw(self):
         """Draw the assets associated with the menu."""
@@ -36,9 +35,12 @@ class MenuLoop(Loop):
             self.update()
             self.draw()
 
-        print("I'm exiting")
-
     def event_loop(self):
         """Handle events for the menu."""
         listen.event_loop()
         self.menu.check_events()
+
+    def can_interact(self):
+        delta_time = pygame.time.get_ticks() - self.time_since_loop_started
+
+        return delta_time > 500

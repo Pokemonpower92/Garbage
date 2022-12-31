@@ -1,6 +1,5 @@
 import pygame
 from config import game_constants, resource_paths
-from sprites.animation.player_animation_group import PlayerAnimationGroup
 
 
 class PlayerSprite(pygame.sprite.Sprite):
