@@ -7,13 +7,9 @@ import gamestate
 
 
 class TextSprite(menu_sprite.MenuSprite):
-    def __init__(self, menu) -> None:
+    def __init__(self) -> None:
         super().__init__()
-
-        self.menu = menu
-
-        self.groups = self.menu.text_sprites
-        pygame.sprite.Sprite.__init__(self, self.groups)
+        pygame.sprite.Sprite.__init__(self)
 
     def load_content(self, values) -> None:
         """Load the resources for the sprite.

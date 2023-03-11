@@ -36,9 +36,12 @@ class MenuLoop(Loop):
             self.draw(utils.setup.Window().get_window())
 
     def event_loop(self):
-        """Handle events for the assets."""
+        """Handle events for the loop."""
+
+        # Listen for top-level events like closing the window.
         listen.event_loop()
-        self.menu.check_events()
+        # Check events associated with all assets.
+        self.assets.check_events()
 
     def can_interact(self):
         """Internal cooldown for interacting with menus."""

@@ -3,9 +3,6 @@ from sprites.menu_sprites import button_sprite
 
 
 class MenuSpriteFactory:
-    def __init__(self, menu):
-        self.menu = menu
-
     def create_menu_sprite(self, sprite_type: str) -> None:
         """Simple factory method.
 
@@ -14,8 +11,8 @@ class MenuSpriteFactory:
         """
 
         if sprite_type == "text":
-            return text_sprite.TextSprite(self.menu)
+            return text_sprite.TextSprite()
         elif sprite_type == "button":
-            return button_sprite.ButtonSprite(self.menu)
+            return button_sprite.ButtonSprite()
         else:
             raise TypeError("No such assets spite type.")

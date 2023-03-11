@@ -1,6 +1,5 @@
 import pygame
 
-from config import menu_data
 from events import listen
 
 from loop.menu_loop import MenuLoop
@@ -14,7 +13,7 @@ class PauseMenuLoop(MenuLoop):
         self.load_assets()
 
     def load_assets(self):
-        self.assets = PauseMenuAssets(menu_data.PAUSE_MENU, self.game_loop, self)
+        self.assets = PauseMenuAssets()
 
     def event_loop(self):
         listen.event_loop()

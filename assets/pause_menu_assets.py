@@ -1,40 +1,20 @@
+import assetdata.menus.pause_menu_buttons as buttons
 from assets.assets import Assets
-from loop import main_menu_loop
+from commands.exit_game_command import ExitGameCommand
 
 
 class PauseMenuAssets(Assets):
-    def __init__(self, menu_data, game_loop, pause_menu_loop):
-        super().__init__(menu_data)
-        self.game_loop = game_loop
-        self.pause_menu_loop = pause_menu_loop
-        self.define_loops()
+    def __init__(self):
+        super().__init__()
 
-    def define_loops(self):
-        self.new_game_loop = "New Game Loop"
-        self.load_game_loop = "Load Game Loop"
-        self.options_loop = "Options Loop"
-        self.character_screen_loop = "Character Loop"
-        self.save_game_menu_loop = main_menu_loop.MainMenuLoop()
-        self.exit_game_menu_loop = main_menu_loop.MainMenuLoop()
-
-        self.loops = {
-            "new_game_loop": self.new_game_loop,
-            "load_game_button": self.load_game_loop,
-            "options_button": self.options_loop,
-            "character_screen_button": self.character_screen_loop,
-            "save_game_button": self.save_game_menu_loop,
-            "exit_game_button": self.exit_game_menu_loop,
-        }
+    def load_assets(self):
+        # Load all the buttons.
+        exit_game_button = self.sprite_factory.create_menu_sprite("button")
+        exit_game_button.load_content(buttons.EXIT_GAME_BUTTON)
+        exit_game_button.set_command(ExitGameCommand())
+        self.button_sprites.add(exit_game_button)
 
     def check_events(self):
         for sprite in self.button_sprites:
-            clicked, button = sprite.check_mouse_event()
-
-            if clicked:
-                # If we exit the game we need to end both loops.
-                if button == "exit_game_button":
-                    self.game_loop.running = False
-                    self.pause_menu_loop.running = False
-                    return
-
-                self.loops[button].run()
+            for button in self.button_sprites:
+                button.update()

@@ -11,8 +11,4 @@ class MainMenuLoop(MenuLoop):
         self.load_assets()
 
     def load_assets(self):
-        self.assets = MainMenuAssets(menu_data.MAIN_MENU)
-
-    def event_loop(self):
-        listen.event_loop()
-        self.assets.check_events()
+        self.assets = MainMenuAssets()
