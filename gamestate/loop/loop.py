@@ -10,6 +10,7 @@ class Loop(abc.ABC):
     """Loops are where all interation with the game from uses occurs."""
 
     def __init__(self):
+        pygame.init()
         self.screen = setup.setup_window(
             game_constants.WINDOW_DIMENSIONS,
             game_constants.WINDOW_TITLE,
