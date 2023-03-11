@@ -1,25 +1,25 @@
 import pygame
 
-from gamestate.loop.loop import Loop
-from gamestate.globalTimers import globalTimers
+import utils.setup
+from loop.loop import Loop
 
 from events import listen
 
 
 class MenuLoop(Loop):
-    """Menu loops run when menus are evoked. Each should implement its own menu class to load."""
+    """Menu loops run when menus are evoked. Each should implement its own assets class to load."""
 
     def __init__(self):
         super().__init__()
 
-    def draw(self):
-        """Draw the assets associated with the menu."""
-        self.menu.draw_background()
-        self.menu.draw_text_sprites()
-        self.menu.draw_button_sprites()
+    def draw(self, screen: pygame.Surface):
+        """Draw the assets associated with the assets."""
+        self.assets.draw_background(screen)
+        self.assets.draw_text_sprites(screen)
+        self.assets.draw_button_sprites(screen)
 
     def load_assets(self):
-        """Load the particular assets for the menu"""
+        """Load the particular assets for the assets"""
         pass
 
     def update(self):
@@ -27,20 +27,20 @@ class MenuLoop(Loop):
         pygame.display.update()
 
     def run(self):
-        """ "Run the menu."""
+        """Run the assets."""
         self.time_since_loop_started = pygame.time.get_ticks()
         self.running = True
         while self.running:
             self.event_loop()
             self.update()
-            self.draw()
+            self.draw(utils.setup.Window().get_window())
 
     def event_loop(self):
-        """Handle events for the menu."""
+        """Handle events for the assets."""
         listen.event_loop()
         self.menu.check_events()
 
     def can_interact(self):
+        """Internal cooldown for interacting with menus."""
         delta_time = pygame.time.get_ticks() - self.time_since_loop_started
-
         return delta_time > 500

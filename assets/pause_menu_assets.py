@@ -1,12 +1,10 @@
-from gamestate.menu.menu import Menu
-from gamestate.loop import main_menu_loop
-
-import pygame
+from assets.assets import Assets
+from loop import main_menu_loop
 
 
-class PauseMenu(Menu):
-    def __init__(self, screen, menu_data, game_loop, pause_menu_loop):
-        super().__init__(screen, menu_data)
+class PauseMenuAssets(Assets):
+    def __init__(self, menu_data, game_loop, pause_menu_loop):
+        super().__init__(menu_data)
         self.game_loop = game_loop
         self.pause_menu_loop = pause_menu_loop
         self.define_loops()

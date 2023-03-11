@@ -7,10 +7,7 @@ from gamestate.globalTimers.globalTimers import globalTimers
 
 class ButtonSprite(menu_sprite.MenuSprite):
     def __init__(self, menu):
-        self.menu = menu
-
-        self.groups = self.menu.button_sprites
-        pygame.sprite.Sprite.__init__(self, self.groups)
+        pygame.sprite.Sprite.__init__(self)
         self.contentFactory = ButtonSpriteContentFactory()
 
         self.mouseover = False
@@ -20,9 +17,9 @@ class ButtonSprite(menu_sprite.MenuSprite):
         """Load the resources for the sprite."""
         self.content = self.contentFactory.create_button_sprite_content(values)
 
-    def draw(self):
+    def draw(self, screen: pygame.Surface):
         """Draw the button's content"""
-        self.content.draw_content(self.menu.screen, self.mouseover)
+        self.content.draw_content(screen, self.mouseover)
 
     def update(self):
         """Update the sprite."""

@@ -18,4 +18,4 @@ class MenuSpriteFactory:
         elif sprite_type == "button":
             return button_sprite.ButtonSprite(self.menu)
         else:
-            raise TypeError("No such menu spite type.")
+            raise TypeError("No such assets spite type.")
