@@ -1,10 +1,10 @@
 import pygame
 
-from gamestate.level.level import Level
-from gamestate.loop import loop
-from gamestate.loop.pause_menu_loop import PauseMenuLoop
+from level.level import Level
+from loop import loop
+from loop.pause_menu_loop import PauseMenuLoop
 
-from config import game_constants, level_data, animation_sets
+from config import game_constants, level_data
 from sprites.player_sprites.player_mage_sprite import PlayerMageSprite
 from events import listen
 

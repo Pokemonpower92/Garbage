@@ -4,6 +4,7 @@ GRAPHICS_PATH = os.path.abspath("resources/graphics")
 
 # Menu resources
 BACKGROUNDS = os.path.abspath("resources/graphics/menus/backgrounds")
+TITLE_SCREEN = BACKGROUNDS + "/title_screen.png"
 
 ## Button Sprites.
 TITLE_SCREEN_BUTTONS = None

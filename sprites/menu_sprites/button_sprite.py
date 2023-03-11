@@ -1,34 +1,20 @@
 from typing import Dict, Any
 
 import pygame
+
+from commands.command import Command
 from sprites.menu_sprites import menu_sprite
 from gamestate.globalTimers.globalTimers import globalTimers
 
 
 class ButtonSprite(menu_sprite.MenuSprite):
-    def __init__(self, menu):
-        self.menu = menu
-
-        self.groups = self.menu.button_sprites
-        pygame.sprite.Sprite.__init__(self, self.groups)
+    def __init__(self):
+        pygame.sprite.Sprite.__init__(self)
         self.contentFactory = ButtonSpriteContentFactory()
-
         self.mouseover = False
         self.clicked = False
 
-    def load_content(self, values):
-        """Load the resources for the sprite."""
-        self.content = self.contentFactory.create_button_sprite_content(values)
-
-    def draw(self):
-        """Draw the button's content"""
-        self.content.draw_content(self.menu.screen, self.mouseover)
-
-    def update(self):
-        """Update the sprite."""
-        pass
-
-    def check_mouse_event(self):
+    def _check_mouse_event(self):
         """Check for a mouse events."""
         mouse_pos = pygame.mouse.get_pos()
 
@@ -37,12 +23,38 @@ class ButtonSprite(menu_sprite.MenuSprite):
             if pygame.mouse.get_pressed()[0]:
                 if globalTimers.get_instance().check_button_cooldown():
                     self.clicked = True
+                    self._press_button()
                     globalTimers.get_instance().set_button_timer()
         else:
             self.mouseover = False
             self.clicked = False
 
-        return self.clicked, self.content.name
+    def set_command(self, command: Command) -> None:
+        """
+        Sets the button's command.
+        @param command: ButtonCommand: The command to be executed when pressed.
+        @return: None
+        """
+        self._command = command
+
+    def _press_button(self):
+        """
+        Execute the command associated with the button.
+        @return: None
+        """
+        self._command.execute()
+
+    def load_content(self, values):
+        """Load the resources for the sprite."""
+        self.content = self.contentFactory.create_button_sprite_content(values)
+
+    def draw(self, screen: pygame.Surface):
+        """Draw the button's content"""
+        self.content.draw_content(screen, self.mouseover)
+
+    def update(self):
+        """Update the sprite."""
+        self._check_mouse_event()
 
 
 class ButtonSpriteContentFactory:
