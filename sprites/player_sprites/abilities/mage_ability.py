@@ -66,7 +66,14 @@ class Teleport(Ability):
         super().__init__(player)
 
     def cast(self):
-        print("Casting Teleport")
+        destination = self.player.direction * self.player.constants["TELEPORT_VELOCITY"]
+        self.player.move(destination.x, destination.y)
+        self.time_since_last_cast = pygame.time.get_ticks()
+        self.can_cast = False
+
 
     def cooldown(self):
-        pass
+        current_time = pygame.time.get_ticks()
+        delta_time = current_time - self.time_since_last_cast
+        if delta_time >= self.player.constants["TELEPORT_COOLDOWN"]:
+            self.can_cast = True

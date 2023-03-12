@@ -29,6 +29,7 @@ class PlayerSprite(pygame.sprite.Sprite):
 
     def load_resources(self):
         """Load the resources for the sprite. Child classes must implement this."""
+        pass
 
     def get_input(self):
         """Get the input for the player."""
@@ -45,7 +46,7 @@ class PlayerSprite(pygame.sprite.Sprite):
             self.ability_two.cast()
 
         ## Ability 3
-        if pressed_keys[pygame.K_RSHIFT]:
+        if pressed_keys[pygame.K_RSHIFT] and self.ability_three.can_cast:
             self.ability_three.cast()
 
         # Player moving up/down.
