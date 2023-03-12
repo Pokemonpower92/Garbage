@@ -1,4 +1,5 @@
 import pygame
+from config import game_constants
 
 
 class globalTimers:
@@ -8,10 +9,10 @@ class globalTimers:
 
     def __init__(self):
         if globalTimers._instance:
-            raise Exception("Cannot instantiate mulitple globalTimers")
+            raise Exception("Cannot instantiate multiple globalTimers")
         else:
             globalTimers._instance = self
-            self.buttons = globalCooldowns()
+            self.globalCooldowns = globalCooldowns()
 
     @staticmethod
     def get_instance():
@@ -20,38 +21,60 @@ class globalTimers:
         return globalTimers._instance
 
     def check_button_cooldown(self):
-        return self.buttons.check_buttons()
+        return self.globalCooldowns.check_buttons()
 
     def set_button_timer(self):
-        self.buttons.set_button_timer()
+        self.globalCooldowns.set_button_timer()
 
     def get_button_time(self):
-        self.buttons.get_button_time()
+        self.globalCooldowns.get_button_time()
+
+    def check_animation_cooldown(self):
+        return self.globalCooldowns.check_animation()
+
+    def set_animation_timer(self):
+        self.globalCooldowns.set_animation_timer()
+
+    def get_animation_time(self):
+        self.globalCooldowns.get_animation_time()
 
 
 class globalCooldowns:
     def __init__(self):
-        self.buttonClickTime = buttonClickTime()
+        self.buttonClickTime = genericTimer()
+        self.animationTime = genericTimer()
 
     def check_buttons(self):
         current_time = pygame.time.get_ticks()
         delta_time = current_time - self.buttonClickTime.get_time()
 
-        return delta_time > 500
+        return delta_time > game_constants.MENU_BUTTON_COOLDOWN
+
+    def check_animation(self):
+        current_time = pygame.time.get_ticks()
+        delta_time = current_time - self.animationTime.get_time()
+
+        return delta_time > game_constants.ANIMATION_SPEED
 
     def set_button_timer(self):
         self.buttonClickTime.set_time()
 
+    def set_animation_timer(self):
+        self.animationTime.set_time()
+
     def get_button_time(self):
         return self.buttonClickTime.get_time()
 
+    def get_animation_time(self):
+        return self.animationTime.get_time()
 
-class buttonClickTime:
+
+class genericTimer:
     def __init__(self):
-        self.timeSinceLastClick = pygame.time.get_ticks()
+        self.timeSince = pygame.time.get_ticks()
 
     def set_time(self):
-        self.timeSinceLastClick = pygame.time.get_ticks()
+        self.timeSince = pygame.time.get_ticks()
 
     def get_time(self):
-        return self.timeSinceLastClick
+        return self.timeSince
