@@ -14,4 +14,8 @@ class TestNewGameCommand(unittest.TestCase):
         """
         command = ExitGameCommand()
         command.execute()
+<<<<<<< HEAD
         self.assertTrue(mock_exit_game.called)
+=======
+        self.assertTrue(mock_exit_game.called)
+>>>>>>> db54bb9 (Command unit tests added.)

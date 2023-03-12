@@ -15,3 +15,7 @@ class TestNewGameCommand(unittest.TestCase):
         command = NewGameCommand()
         command.execute()
         self.assertTrue(mock_start_new_game.called)
+<<<<<<< HEAD
+=======
+
+>>>>>>> db54bb9 (Command unit tests added.)
