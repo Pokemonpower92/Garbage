@@ -8,4 +8,8 @@ class Command(ABC):
 
     @abstractmethod
     def execute(self) -> None:
+<<<<<<< HEAD
         pass
+=======
+        pass
+>>>>>>> a2eb52e (Added unit tests for assets.)
