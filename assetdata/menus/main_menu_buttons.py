@@ -91,4 +91,8 @@ EXIT_GAME_BUTTON = {
     "hover_color": (255, 255, 255),
     "border_radius": 12,
     "command": TempCommand()
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> a2eb52e (Added unit tests for assets.)
