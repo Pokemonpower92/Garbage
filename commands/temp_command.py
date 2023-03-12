@@ -11,8 +11,4 @@ class TempCommand(Command):
         Run the loop.
         @return: None
         """
-<<<<<<< HEAD
         pass
-=======
-        pass
->>>>>>> a2eb52e (Added unit tests for assets.)
