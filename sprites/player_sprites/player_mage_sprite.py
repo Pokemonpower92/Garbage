@@ -32,6 +32,23 @@ class PlayerMageSprite(PlayerSprite):
 
         self.load_resources()
 
+
+    def switch_animation_set(self):
+
+        if self.direction.magnitude() == 0:
+            self.animation_group.change_current_set("idle", "down")
+
+        if self.direction.x:
+            if self.direction.x > 0:
+                self.animation_group.change_current_set("walking", "right")
+            else:
+                self.animation_group.change_current_set("walking", "left")
+        if self.direction.y:
+            if self.direction.y > 0:
+                self.animation_group.change_current_set("walking", "down")
+            else:
+                self.animation_group.change_current_set("idle", "down")
+
     def load_resources(self):
         """Load resources for the sprite."""
         self.animation_group = PlayerAnimationGroup().load_animation_sets(

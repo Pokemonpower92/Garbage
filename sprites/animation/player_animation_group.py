@@ -12,15 +12,18 @@ class PlayerAnimationGroup(AnimationGroup):
     def load_animation_sets(self, image_sets) -> AnimationSet:
         """Load the animation sets for the group into the animation_sets dictionary."""
 
-        a = image_sets.copy()
+        self.all_sets = image_sets.copy()
 
         for action, directions in image_sets.items():
             for direction, image_set in directions.items():
-                a[action][direction] = AnimationSet([x for x in image_set])
+                self.all_sets[action][direction] = AnimationSet([x for x in image_set])
 
-        self.current_animation_set = a["idle"]["down"]
+        self.current_animation_set = self.all_sets["idle"]["down"]
 
         return self
+
+    def change_current_set(self, action: str, direction: str) -> None:
+        self.current_animation_set = self.all_sets[action][direction]
 
     def advance_animation(self) -> pygame.image:
         """Cycle the current animation group."""
