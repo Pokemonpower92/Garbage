@@ -76,6 +76,8 @@ class PlayerSprite(pygame.sprite.Sprite):
         if self.direction.magnitude() != 0:
             self.direction = self.direction.normalize()
 
+        self.switch_animation_set()
+
         self.direction *= self.velocity
 
         pygame.event.pump()
@@ -95,6 +97,13 @@ class PlayerSprite(pygame.sprite.Sprite):
         self.check_wall_collision("y")
 
         self.rect.center = self.hit_box.center
+
+    def switch_animation_set(self):
+        """
+        Change the animation set.
+        @return: None
+        """
+        pass
 
     def check_wall_collision(self, axis):
         """Check if player collides with a wall at a given dx and dy"""
