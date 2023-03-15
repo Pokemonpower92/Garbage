@@ -49,6 +49,7 @@ class EnemySprite(pygame.sprite.Sprite):
             self.rect.x += new_position.x
             self.rect.y += new_position.y
             self.hit_box.center = self.rect.center
+
     def choose_action(self) -> None:
         """
         Chooses the appropriate action for the frame.
