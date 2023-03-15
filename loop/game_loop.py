@@ -53,4 +53,5 @@ class GameLoop(loop.Loop):
         self.level = Level(self, level_data.LEVEL_0)
         self.player = PlayerMageSprite(self.level)
 
-        self.level.load_level()
+
+        self.level.load_level(self.player)

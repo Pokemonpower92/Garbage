@@ -1,8 +1,8 @@
 import pygame
 from config import game_constants, resource_paths
+from sprites.player_sprites.player_sprite import PlayerSprite
 from sprites.environment_sprites.wall_sprite import WallSprite
 from sprites.enemy_sprites.enemy_sprite import EnemySprite
-from utils import data_management
 
 
 class Level:
@@ -10,6 +10,7 @@ class Level:
 
         self.game = game
         self.level_data = level_data
+        self.player = None
 
         # Create all the sprites for the level.
         self.all_sprites = YSortedSpriteGroup(self.game.screen, level_data)
@@ -19,8 +20,10 @@ class Level:
         self.enemy_sprites = pygame.sprite.Group()
         self.route_sprites = pygame.sprite.Group()
 
-    def load_level(self):
+    def load_level(self, player: PlayerSprite):
         """Loads the level and creates all the sprites."""
+
+        self.player = player
 
         for type, layout in self.level_data["tiles"].items():
             for row_index, row in enumerate(layout):
