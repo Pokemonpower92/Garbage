@@ -39,6 +39,10 @@ class EnemySprite(pygame.sprite.Sprite):
         return pygame.image.load(image_path)
 
     def take_action(self) -> None:
+        """
+        Take whatever action for the frame.
+        @return: None
+        """
 
         if self.action == EnemyActions.ATTACKING:
             print("Attacking")
