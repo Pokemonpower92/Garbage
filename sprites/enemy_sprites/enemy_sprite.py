@@ -1,6 +1,5 @@
 import pygame
-from config import game_constants, resource_paths, level_data
-from enemy_sprites.enemy_actions import EnemyActions
+from sprites.enemy_sprites.enemy_actions import EnemyActions
 
 
 class EnemySprite(pygame.sprite.Sprite):

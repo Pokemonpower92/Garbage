@@ -1,6 +1,6 @@
 import pygame
 from config import game_constants, resource_paths
-from player_sprites.player_sprite import PlayerSprite
+from sprites.player_sprites.player_sprite import PlayerSprite
 from sprites.environment_sprites.wall_sprite import WallSprite
 from sprites.enemy_sprites.enemy_sprite import EnemySprite
 
