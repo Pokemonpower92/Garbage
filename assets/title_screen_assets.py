@@ -1,6 +1,6 @@
 from assets.assets import Assets
 from assetdata.menus.texts import TITLE_SCREEN_MESSAGE
-from menu_sprites.text_sprite import TextSprite
+from sprites.menu_sprites.text_sprite import TextSprite
 
 
 class TitleScreenAssets(Assets):

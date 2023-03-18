@@ -1,7 +1,7 @@
 from assetdata.menus import buttons
 from assets.assets import Assets
 from commands.new_game_command import NewGameCommand
-from menu_sprites.button_sprite import ButtonSprite
+from sprites.menu_sprites.button_sprite import ButtonSprite
 
 
 class MainMenuAssets(Assets):
