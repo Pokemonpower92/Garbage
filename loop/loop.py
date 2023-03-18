@@ -29,8 +29,12 @@ class Loop(abc.ABC):
         )
 
     @abc.abstractmethod
-    def draw(self) -> None:
-        """Draw all of the sprites associated with the loop."""
+    def draw(self, screen) -> None:
+        """
+        Draw all of the sprites associated with the loop.
+        @param screen: screen to draw on.
+        @return: None
+        """
         pass
 
     @abc.abstractmethod

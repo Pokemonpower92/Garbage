@@ -1,12 +1,10 @@
 import pygame
 
 from config import resource_paths
-from sprites.menu_sprites import menu_sprite_factory
 
 
 class Assets:
     def __init__(self):
-        self.sprite_factory = menu_sprite_factory.MenuSpriteFactory()
 
         # Create all the sprites for the assets.
         self.button_sprites = ButtonSpriteGroup()
@@ -14,8 +12,11 @@ class Assets:
         self.background_surface = pygame.image.load(resource_paths.TITLE_SCREEN)
         self.load_assets()
 
-    def load_assets(self):
-        """Loads the assets and creates all the sprites."""
+    def load_assets(self) -> None:
+        """
+        Loads the assets and creates all the sprites.
+        @return: None
+        """
         pass
 
     def draw_background(self, screen: pygame.Surface) -> None:
