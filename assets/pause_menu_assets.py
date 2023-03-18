@@ -10,8 +10,7 @@ class PauseMenuAssets(Assets):
 
     def load_assets(self):
         # Load all the buttons.
-        exit_game_button = ButtonSprite(buttons.EXIT_GAME_BUTTON, ExitGameCommand)
-        exit_game_button.set_command(ExitGameCommand())
+        exit_game_button = ButtonSprite(buttons.EXIT_GAME_BUTTON, ExitGameCommand())
         self.button_sprites.add(exit_game_button)
 
     def check_events(self):
