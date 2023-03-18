@@ -1,6 +1,7 @@
 import assetdata.menus.pause_menu_buttons as buttons
 from assets.assets import Assets
 from commands.exit_game_command import ExitGameCommand
+from sprites.menu_sprites.button_sprite import ButtonSprite
 
 
 class PauseMenuAssets(Assets):
@@ -9,8 +10,7 @@ class PauseMenuAssets(Assets):
 
     def load_assets(self):
         # Load all the buttons.
-        exit_game_button = self.sprite_factory.create_menu_sprite("button")
-        exit_game_button.load_content(buttons.EXIT_GAME_BUTTON)
+        exit_game_button = ButtonSprite(buttons.EXIT_GAME_BUTTON, ExitGameCommand)
         exit_game_button.set_command(ExitGameCommand())
         self.button_sprites.add(exit_game_button)
 
