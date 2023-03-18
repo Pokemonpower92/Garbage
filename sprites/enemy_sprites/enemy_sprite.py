@@ -1,5 +1,5 @@
 import pygame
-from sprites.enemy_sprites.enemy_actions import EnemyActions
+from sprites.types.enemy_actions import EnemyActions
 
 
 class EnemySprite(pygame.sprite.Sprite):

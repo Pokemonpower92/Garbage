@@ -1,5 +1,7 @@
 import pygame
 from config import player_constants, animation_sets
+from sprites.types.player_actions import PlayerActions
+from sprites.types.direction import Direction
 from .player_sprite import PlayerSprite
 from .abilities import mage_ability
 
@@ -33,21 +35,26 @@ class PlayerMageSprite(PlayerSprite):
         self.load_resources()
 
 
-    def switch_animation_set(self):
+    def switch_animation_set(self) -> None:
+        """
+        Switch the animation set based on the player's current direction.
+        @return:
+        """
 
         if self.direction.magnitude() == 0:
-            self.animation_group.change_current_set("idle", "down")
+            self.animation_group.change_current_set(PlayerActions.IDLE, Direction.DOWN)
 
         if self.direction.x:
             if self.direction.x > 0:
-                self.animation_group.change_current_set("walking", "right")
+                self.animation_group.change_current_set(PlayerActions.WALKING, Direction.RIGHT)
             else:
-                self.animation_group.change_current_set("walking", "left")
+                self.animation_group.change_current_set(PlayerActions.WALKING, Direction.LEFT)
+
         if self.direction.y:
             if self.direction.y > 0:
-                self.animation_group.change_current_set("walking", "down")
+                self.animation_group.change_current_set(PlayerActions.WALKING, Direction.DOWN)
             else:
-                self.animation_group.change_current_set("idle", "down")
+                self.animation_group.change_current_set(PlayerActions.IDLE, Direction.DOWN)
 
     def load_resources(self):
         """Load resources for the sprite."""
