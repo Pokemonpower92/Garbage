@@ -11,6 +11,9 @@ class MenuLoop(Loop):
 
     def __init__(self):
         super().__init__()
+        self.running = None
+        self.time_since_loop_started = None
+        self.assets = None
 
     def draw(self, screen: pygame.Surface):
         """Draw the assets associated with the assets."""

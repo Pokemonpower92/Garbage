@@ -1,14 +1,14 @@
 from assets.assets import Assets
 from assetdata.menus.texts import TITLE_SCREEN_MESSAGE
-from sprites.menu_sprites.menu_sprite_factory import MenuSpriteFactory
+from sprites.menu_sprites.text_sprite import TextSprite
+
 
 class TitleScreenAssets(Assets):
     def __init__(self):
         super().__init__()
 
     def load_assets(self):
-        message = self.sprite_factory.create_menu_sprite("text")
-        message.load_content(TITLE_SCREEN_MESSAGE)
+        message = TextSprite(TITLE_SCREEN_MESSAGE)
         self.text_sprites.add(message)
 
     def check_events(self):

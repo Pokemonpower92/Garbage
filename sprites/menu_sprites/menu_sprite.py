@@ -1,12 +1,9 @@
-from typing import Dict, Any
-
 import pygame
 
 
 class MenuSprite(pygame.sprite.Sprite):
     """Menu sprites are any sprite that
-    menus require to function. Cosmetic
-    sprites are seperate.
+    menus require to function.
     """
 
     def __init__(self):

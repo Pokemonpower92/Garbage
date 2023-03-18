@@ -1,3 +1,4 @@
+from __future__ import annotations
 from typing import Dict, Any, Optional
 
 import pygame
@@ -7,19 +8,28 @@ import gamestate
 
 
 class TextSprite(menu_sprite.MenuSprite):
-    def __init__(self) -> None:
+    def __init__(self, content: Dict[str, Any]) -> None:
         super().__init__()
         pygame.sprite.Sprite.__init__(self)
+        self.position = None
+        self.content_rect = None
+        self.font = None
 
-    def load_content(self, values) -> None:
-        """Load the resources for the sprite.
-        :return: void
+        self.content = self.set_content(content)
+
+    def set_content(self, content: Dict[str, Any]) -> pygame.font:
         """
-        self.font = pygame.font.SysFont(values["font"][0], values["font"][1])
-        self.content = self.font.render(values["text"], 1, values["color"])
+        Set the sprite's content.
+        @param content: The content to set.
+        @return: TextSprite
+        """
+        self.font = pygame.font.SysFont(content["font"][0], content["font"][1])
+        self.content = self.font.render(content["text"], 1, content["color"])
         self.content_rect = self.content.get_rect()
 
-        self.position = values["position"]
+        self.position = content["position"]
+
+        return self.content
 
     def update(self) -> None:
         """Update the sprite."""
