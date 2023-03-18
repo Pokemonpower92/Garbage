@@ -1,13 +1,8 @@
-import unittest
 from unittest.mock import patch
 
 import unittest
 import pygame
 import logging
-import os
-
-# We need to patch the cwd so assets can be loaded.
-os.chdir(os.path.abspath("../../"))
 
 from assets.title_screen_assets import TitleScreenAssets
 
